@@ -1,3 +1,213 @@
-body{
-    background-color: cadetblue;
+:root{
+    /* animation height variables */
+    --bottom1-animation: 65vh;
+    --bottom2-animation: 60vh;
+    --middle-height-animation: 30vh;
+    --top1-animation-high: 2vh;
+    --top2-animation-medium: 10vh;
+
+    /* Color variables */
+    --header-background: #537d90;
+    --sky-background: lightblue;
+    --welcome-victory-page: lightgreen;
+    --text-color: white;
 }
+
+/* Gives the user a crossair */
+* {
+  cursor: crosshair;
+}
+/* Styling the boddy */
+body {
+  color: var(--text-color);
+  text-align: center;
+  margin: 0;
+  font-family: sans-serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+  background-color: var(--sky-background);
+  counter-reset: hits 0;
+  overflow: hidden;
+  counter-reset: checked;
+}
+
+/* Styles the upper grey bar (header) */
+header {
+  background-color: var(--header-background);
+  padding: 1.5rem;
+}
+
+
+/* Places the grass where it is supposed to be */
+img {
+    position: absolute;
+    width: 100vw;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+}
+
+/* Styles the targets */
+input {
+    height: 5rem;
+    width: 5rem;
+    font-size: 5rem;
+    appearance: none;
+    cursor: cell;
+    transform: translateY(var(--bottom1-animation));
+}
+
+input:before {
+    content: "🎯";
+}
+
+input:checked:before {
+    content: "💯";
+}
+
+input:checked {
+    pointer-events: none;
+}
+
+/* Hit counter */
+input:checked {
+    counter-increment: checked;
+}
+
+.count:after {
+    content: counter(checked);
+}
+
+/* Animations */
+@keyframes jump {
+    0% {
+        transform: translateY(var(--bottom1-animation));
+    }
+    10% {
+        transform: translateY(var(--top1-animation-high));
+    }
+    20% {
+        transform: translateY(var(--bottom1-animation));
+    }
+    30% {
+        transform: translateY(var(--bottom2-animation));
+    }
+    40% {
+        transform: translateY(var(--bottom1-animation));
+    }
+    50% {
+        transform: translateY(var(--top2-animation-medium));
+    }
+    60% {
+        transform: translateY(var(--bottom1-animation));
+    }
+    70% {
+        transform: translateY(var(--middle-height-animation));
+    }
+    80% {
+        transform: translateY(var(--bottom1-animation));
+    }
+    90% {
+        transform: translateY(var(--bottom2-animation));
+    }
+    100% {
+        transform: translateY(var(--bottom1-animation));
+    }
+}
+
+@keyframes welcomeScreen{
+    0%{
+        top: 0;
+    }
+    100%{
+        top: 100vh;
+    }
+}
+
+input {
+    animation: jump 10s infinite linear alternate;
+}
+
+input:nth-of-type(even) {
+    animation-direction: alternate-reverse;
+}
+
+input:nth-last-of-type(3n + 1) {
+    animation-delay: 1s;
+}
+
+input:nth-last-of-type(3n + 2) {
+    animation-delay: 3.7s;
+}
+
+input:checked {
+    animation-play-state: paused;
+}
+
+/* displays the victorscreen if all boxes are checked */
+input:checked
++ input:checked
++ input:checked
++ input:checked
++ input:checked
++ input:checked
++ input:checked
++ input:checked
++ input:checked
+~ .victory {
+    top: 0;
+    transition: 200ms;
+}
+
+/* This styles the victory page */
+.victory {
+  position: absolute;
+  top: 100vh;
+  width: 100vw;
+  height: 100vh;
+  background: var(--welcome-victory-page);
+  font-size: 5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Reset button on the victory page */
+/*Adding-Variables*/
+.resetButton {
+  background-color: var(--text-color);
+  color: var(--welcome-victory-page);
+  }
+.resetButton {
+  background-color: white;
+  color: lightgreen;
+  border-radius: 5px;
+  font-size: 2rem;
+  margin: 0 auto;
+  width: 200px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.resetButton:hover {
+  opacity: 70%;
+  cursor: pointer;
+}
+
+
+/* This styles the victory page */
+.welcome {
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    width: 100vw;
+    height: 100vh;
+    background: var(--welcome-victory-page);
+    font-size: 5rem;
+    align-items: center;
+    justify-content: center;
+
+    animation-name: welcomeScreen;
+    animation-play-state: running;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-delay: 1s;
+  }

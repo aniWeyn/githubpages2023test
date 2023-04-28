@@ -1,12 +1,35 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+  <head>
+    <link rel="stylesheet" href="style.css" />
+    <meta charset="utf-8" />
+    <title>Target Shooting Game</title>
+  </head>
+  <body>
+    <header>HIT ALL 9 TARGETS TO WIN!</header>
 
-<h1>My First Heading</h1>
-<p>My first paragraph.</p>
+    <div class="welcome">
+      <h2>HELLO WORLD!!!!!</h2>
+      <h3>welcome to group 1 gamepage!</h3>
+    </div>
 
-</body>
+    <img src="./img/grass.png" alt="" />
+    <input class="box1" type="checkbox" />
+    <input class="box2" type="checkbox" />
+    <input class="box3" type="checkbox" />
+    <input class="box4" type="checkbox" />
+    <input class="box5" type="checkbox" />
+    <input class="box6" type="checkbox" />
+    <input class="box7" type="checkbox" />
+    <input class="box8" type="checkbox" />
+    <input class="box9" type="checkbox" />
+    <div>Targets Hit: <span class="count"></span> / 9</div>
+
+    <div class="victory">
+      <h2>VICTORY!!!</h2>
+      <div onClick="window.location.reload();" class="resetButton">
+        PLAY AGAIN!
+      </div>
+    </div>
+  </body>
 </html>
